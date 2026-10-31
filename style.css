@@ -627,6 +627,7 @@ button:focus-visible {
     transition: transform 0.3s, border-color 0.3s;
 }
 .tile:hover { transform: translateY(-3px); border-color: #ffb727; }
+.text-content a.tile, .text-content a.tile:hover { text-decoration: none; color: inherit; font-weight: normal; }
 .tile-visual {
     height: 110px; background: #1a1a1a; display: flex; align-items: center; justify-content: center;
     color: #ffb727; font-size: 38px; overflow: hidden;
