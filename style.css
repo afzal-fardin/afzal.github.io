@@ -1,0 +1,774 @@
+/* ===========================
+   1. RESET & GLOBAL STYLES
+=========================== */
+/* Yellow Text Selection */
+::selection {
+    background: #ffb727; 
+    color: #111;         
+}
+::-moz-selection {
+    background: #ffb727;
+    color: #111;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #111; /* Very dark background */
+    color: #ccc;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Stops vertical bouncing */
+    min-height: 100vh;
+    padding: 60px 20px; /* Consistent top padding */
+}
+
+/* ===========================
+   2. MAIN LAYOUT CONTAINER
+=========================== */
+.main-container {
+    display: flex;
+    max-width: 1100px; 
+    width: 100%;
+    gap: 40px; 
+    align-items: flex-start; 
+}
+
+/* ===========================
+   3. LEFT COLUMN: PROFILE CARD
+=========================== */
+.profile-card {
+    width: 320px;
+    background: #1e1e1e;
+    padding: 30px;
+    border-radius: 12px;
+    text-align: center;
+    position: sticky;
+    top: 20px; /* Small gap from top */
+    
+    /* SCROLLABLE SIDEBAR SETTINGS */
+    max-height: calc(100vh - 40px);
+    overflow-y: auto; 
+    scrollbar-width: thin; 
+    scrollbar-color: #333 #1e1e1e;
+    
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    flex-shrink: 0; 
+    border: 1px solid #2a2a2a;
+}
+
+/* Custom Scrollbar for Chrome/Safari */
+.profile-card::-webkit-scrollbar {
+    width: 6px;
+}
+.profile-card::-webkit-scrollbar-track {
+    background: #1e1e1e;
+}
+.profile-card::-webkit-scrollbar-thumb {
+    background-color: #333;
+    border-radius: 10px;
+}
+
+.profile-img {
+    width: 140px;
+    height: 140px;
+    border-radius: 12px;
+    object-fit: cover;
+    margin-bottom: 20px;
+    border: 3px solid #2d2d2d;
+}
+
+.profile-card h1 {
+    font-size: 22px;
+    color: #fff;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 30px;
+    flex-wrap: wrap; 
+}
+
+.social-links a {
+    color: #aaa;
+    font-size: 18px;
+    transition: 0.3s;
+    background: #252525;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    text-decoration: none;
+}
+
+.social-links a:hover {
+    color: #111;
+    background: #ffb727; 
+}
+
+.contact-box {
+    background: #252525;
+    padding: 12px 15px;
+    border-radius: 8px;
+    margin-bottom: 12px;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.contact-box i {
+    color: #ffb727;
+    font-size: 18px;
+}
+
+.contact-box div span {
+    display: block;
+    font-size: 10px;
+    text-transform: uppercase;
+    color: #666;
+    letter-spacing: 1px;
+}
+
+.contact-box div p {
+    font-size: 13px;
+    color: #ddd;
+    word-break: break-all;
+}
+
+/* Sidebar CV Button */
+.btn-cv-sidebar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 25px;
+    color: #ffb727;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 12px;
+    border-radius: 8px;
+    border: 2px solid #ffb727;
+    transition: 0.3s;
+}
+
+.btn-cv-sidebar:hover {
+    background: #ffb727;
+    color: #111;
+}
+
+/* Sidebar Contact Form Styles */
+.sidebar-form {
+    margin-top: 25px;
+    padding-top: 20px;
+    border-top: 1px solid #333; 
+    text-align: left;
+}
+
+.sidebar-form h3 {
+    color: #fff;
+    font-size: 16px;
+    margin-bottom: 15px;
+    text-align: center;
+    font-weight: 600;
+}
+
+.sidebar-form input, 
+.sidebar-form textarea {
+    width: 100%;
+    background: #111;
+    border: 1px solid #333;
+    color: #ccc;
+    padding: 10px;
+    border-radius: 6px;
+    margin-bottom: 10px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
+    transition: 0.3s;
+}
+
+.sidebar-form input:focus, 
+.sidebar-form textarea:focus {
+    border-color: #ffb727;
+    outline: none;
+    background: #000;
+}
+
+.sidebar-form button {
+    width: 100%;
+    background: #ffb727;
+    color: #111;
+    border: none;
+    padding: 10px;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: 0.3s;
+}
+
+.sidebar-form button:hover {
+    background: #e0a800;
+    transform: translateY(-2px);
+}
+
+/* ===========================
+   4. RIGHT COLUMN: CONTENT AREA
+=========================== */
+.content-card {
+    flex-grow: 1;
+    background: #1e1e1e;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    overflow: hidden; 
+    border: 1px solid #2a2a2a;
+    min-height: 600px;
+}
+
+/* Top Navigation */
+.top-nav {
+    background: #252525;
+    padding: 20px 30px;
+    border-bottom: 1px solid #2a2a2a;
+    display: flex;
+    justify-content: flex-end; 
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.top-nav a {
+    color: #aaa;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: 0.3s;
+    padding: 5px 10px;
+    border-radius: 4px;
+}
+
+.top-nav a:hover, .top-nav a.active {
+    color: #ffb727; 
+    background: rgba(255, 183, 39, 0.1); 
+}
+
+/* Content Body */
+.content-body {
+    padding: 40px;
+}
+
+.page-title {
+    font-size: 32px;
+    color: #fff;
+    margin-bottom: 40px;
+    position: relative;
+    padding-bottom: 10px;
+    font-weight: 700;
+}
+
+.page-title::after {
+    content: '';
+    position: absolute;
+    width: 60px;
+    height: 4px;
+    background: #ffb727;
+    bottom: 0;
+    left: 0;
+    border-radius: 2px;
+}
+
+/* Text Content Typography */
+.text-content p {
+    margin-bottom: 20px;
+    line-height: 1.8;
+    color: #bbb;
+    font-size: 15px;
+}
+
+/* ===========================
+   5. SHARED ITEM CARDS (Projects/Pubs)
+=========================== */
+.item-card {
+    background: #252525;
+    padding: 25px;
+    border-radius: 10px;
+    margin-bottom: 25px;
+    border-left: 4px solid #ffb727; 
+    transition: transform 0.3s;
+}
+
+.item-card:hover {
+    transform: translateX(5px); 
+}
+
+.item-card h3 {
+    color: #fff;
+    margin-bottom: 8px;
+    font-size: 18px;
+}
+
+.item-card h4 {
+    font-size: 14px;
+    color: #ffb727; 
+    margin-bottom: 15px;
+    font-weight: 500;
+}
+
+.item-card p {
+    color: #aaa;
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+/* Tags (for Projects) */
+.tags {
+    margin-bottom: 15px;
+}
+.tags span {
+    display: inline-block;
+    background: #333;
+    color: #ccc;
+    padding: 5px 12px;
+    border-radius: 50px;
+    font-size: 11px;
+    margin-right: 6px;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+/* PDF Links */
+.item-card a.link-btn {
+    display: inline-block;
+    margin-top: 15px;
+    font-size: 13px;
+    color: #ffb727;
+    text-decoration: underline;
+    font-weight: 500;
+}
+
+/* Google Scholar Button */
+.scholar-btn {
+   display:inline-flex;
+   align-items: center;
+   gap: 10px;
+   margin-top:30px;
+   background:#252525;
+   color:#fff;
+   padding:12px 25px;
+   border-radius:50px;
+   text-decoration:none;
+   font-weight: 500;
+   transition: 0.3s;
+   border: 2px solid #252525;
+}
+
+.scholar-btn:hover {
+    border-color: #ffb727;
+    color: #ffb727;
+}
+
+/* ===========================
+   6. TIMELINE STYLES (Education/Experience)
+=========================== */
+.timeline {
+    position: relative;
+    padding-left: 20px;
+    border-left: 2px solid #333; /* The vertical line */
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 50px;
+    padding-left: 20px;
+    padding-top: 2px;
+}
+
+.timeline-item:last-child {
+    margin-bottom: 0;
+}
+
+/* The Yellow Dot */
+.timeline-dot {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background: #ffb727;
+    border-radius: 50%;
+    left: -27px; /* Aligns with the border line */
+    top: 5px;
+    border: 2px solid #1e1e1e; /* Creates a gap effect */
+    box-shadow: 0 0 0 2px #ffb727; /* Double ring effect */
+}
+
+/* --- ROW-BASED LAYOUT --- */
+.timeline-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline; /* Aligns text nicely on the baseline */
+    margin-bottom: 8px; /* Spacing between row 1 and row 2 */
+    flex-wrap: wrap; /* Allows wrapping on very small screens */
+    gap: 15px; /* Horizontal gap between left and right items */
+}
+
+/* Row 1 Left: University / Company Name */
+.timeline-title {
+    font-size: 18px;
+    color: #fff;
+    font-weight: 600;
+    margin: 0;
+    flex: 1; /* Takes available space */
+    min-width: 200px;
+}
+
+/* Row 2 Left: Degree / Location / Detail */
+.timeline-subtitle {
+    font-size: 15px;
+    color: #ccc;
+    font-weight: 500;
+    margin: 0;
+    flex: 1;
+    min-width: 200px;
+}
+
+/* Row 1 Right: Date */
+.timeline-date {
+    font-size: 14px;
+    color: #aaa;
+    font-weight: 400;
+    text-align: right;
+    flex-shrink: 0; /* Prevents wrapping if possible */
+}
+
+/* Row 2 Right: CGPA / Job Title Highlight */
+.timeline-highlight {
+    font-size: 15px;
+    color: #ffb727; /* Yellow theme color */
+    font-weight: 600;
+    text-align: right;
+    flex-shrink: 0;
+}
+
+.timeline-desc {
+    font-size: 14px;
+    color: #aaa;
+    margin-top: 15px;
+    line-height: 1.6;
+}
+
+/* Notable Courses Grid */
+.courses-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; 
+    gap: 10px;
+    margin-top: 20px;
+    background: #252525;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.courses-grid span {
+    font-size: 13px;
+    color: #bbb;
+}
+
+/* ===========================
+   7. RESPONSIVE
+=========================== */
+@media (max-width: 900px) {
+    .main-container {
+        flex-direction: column;
+    }
+    .profile-card {
+        width: 100%;
+        position: relative;
+        top: 0;
+        max-height: none; /* Disable scroll constraint on mobile */
+        overflow-y: visible;
+    }
+    .top-nav {
+        justify-content: center;
+    }
+    .courses-grid {
+        grid-template-columns: 1fr; /* 1 col on mobile */
+    }
+    .timeline-row {
+        flex-direction: column;
+        gap: 2px;
+    }
+    .timeline-date, .timeline-highlight {
+        text-align: left;
+        margin-bottom: 5px;
+    }
+}
+
+
+/* =====================================================
+   8. ADDITIONS: ACCESSIBILITY, MEDIA THUMBNAILS,
+      BUTTONS, GALLERY, LIGHTBOX & PDF PREVIEW
+   (original design above is unchanged)
+===================================================== */
+html { scroll-behavior: smooth; }
+img { max-width: 100%; height: auto; }
+
+.skip-link {
+    position: absolute;
+    left: 10px;
+    top: -60px;
+    background: #ffb727;
+    color: #111;
+    padding: 10px 16px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 14px;
+    z-index: 2000;
+    text-decoration: none;
+}
+.skip-link:focus { top: 10px; }
+
+a:focus-visible,
+button:focus-visible {
+    outline: 3px solid #ffb727;
+    outline-offset: 3px;
+    border-radius: 4px;
+}
+
+.text-content a, .item-card a:not(.btn):not(.media-thumb) {
+    color: #ffb727;
+    text-decoration: none;
+    font-weight: 500;
+    transition: 0.3s;
+}
+.text-content a:hover { text-decoration: underline; color: #fff; }
+
+.sr-only {
+    position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+    overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+}
+
+.section-title {
+    color: #fff;
+    margin-top: 45px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #333;
+    padding-bottom: 10px;
+    font-size: 20px;
+}
+.section-title:first-child { margin-top: 0; }
+
+.lead-note { color: #999; font-size: 13px; margin: -20px 0 28px; line-height: 1.7; }
+
+/* Sidebar "get in touch" (replaces the contact form) */
+.sidebar-form p { color: #aaa; font-size: 13px; line-height: 1.6; text-align: center; margin-bottom: 14px; }
+.btn-mail {
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    background: #ffb727; color: #111; text-decoration: none;
+    padding: 10px; border-radius: 6px; font-weight: 600; font-size: 14px; transition: 0.3s;
+}
+.btn-mail:hover { background: #e0a800; transform: translateY(-2px); }
+
+/* Info boxes (thesis, IELTS ...) */
+.note-box {
+    background: #252525;
+    border-left: 3px solid #ffb727;
+    padding: 15px;
+    margin: 20px 0;
+    border-radius: 6px;
+}
+.note-box h4 { color: #fff; font-size: 15px; margin-bottom: 6px; font-weight: 600; }
+.note-box p { color: #ccc; font-size: 13px; line-height: 1.6; }
+.note-box p.italic { font-style: italic; }
+
+/* Research interest list (About) */
+.interest-list { list-style: none; padding-left: 0; margin: 20px 0; }
+.interest-list li {
+    margin-bottom: 18px; background: #252525; padding: 15px;
+    border-radius: 8px; border-left: 3px solid #ffb727;
+    color: #bbb; font-size: 14px; line-height: 1.7;
+}
+.interest-list strong { color: #fff; }
+
+/* Skills */
+.skill-group { margin-bottom: 18px; }
+.skill-group h4 { color: #fff; font-size: 14px; font-weight: 600; margin-bottom: 8px; }
+.skill-group .tags { margin-bottom: 0; }
+
+/* Quick-link tiles (About) */
+.tile-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 16px;
+    margin: 10px 0 10px;
+}
+.tile {
+    display: block;
+    background: #252525;
+    border: 1px solid #2f2f2f;
+    border-radius: 10px;
+    overflow: hidden;
+    text-decoration: none;
+    transition: transform 0.3s, border-color 0.3s;
+}
+.tile:hover { transform: translateY(-3px); border-color: #ffb727; }
+.tile-visual {
+    height: 110px; background: #1a1a1a; display: flex; align-items: center; justify-content: center;
+    color: #ffb727; font-size: 38px; overflow: hidden;
+}
+.tile-visual img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.tile-text { padding: 14px 16px 16px; }
+.tile-text strong { display: block; color: #fff; font-size: 15px; font-weight: 600; margin-bottom: 4px; }
+.tile-text span { color: #aaa; font-size: 12.5px; line-height: 1.5; display: block; }
+
+/* Cards with a thumbnail */
+.media-card { display: flex; gap: 22px; align-items: flex-start; }
+.media-side { width: 170px; flex: 0 0 170px; }
+.media-body { flex: 1; min-width: 0; }
+
+.media-thumb {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    background: #1a1a1a;
+    border: 1px solid #333;
+    border-radius: 8px;
+    overflow: hidden;
+    color: #555;
+    text-decoration: none;
+    transition: border-color 0.3s, transform 0.3s;
+}
+a.media-thumb { cursor: zoom-in; }
+a.media-thumb[data-pdf], a.media-thumb.is-pdf { cursor: pointer; }
+a.media-thumb:hover { border-color: #ffb727; transform: scale(1.02); }
+.media-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.media-thumb.is-doc img { object-position: top center; background: #fff; }
+.media-thumb.placeholder i { font-size: 38px; color: #4a4a4a; }
+.media-thumb .badge {
+    position: absolute; left: 8px; bottom: 8px;
+    background: rgba(17,17,17,0.85); color: #ffb727;
+    font-size: 10.5px; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase;
+    padding: 3px 9px; border-radius: 50px; border: 1px solid #ffb727;
+}
+
+.gallery-strip { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+.gallery-strip a {
+    display: block; width: calc(50% - 3px); aspect-ratio: 4 / 3; border-radius: 6px; overflow: hidden;
+    border: 1px solid #333; background: #1a1a1a; transition: border-color 0.3s; cursor: zoom-in;
+}
+.gallery-strip a:hover { border-color: #ffb727; }
+.gallery-strip img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+/* Buttons */
+.btn-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+.btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 8px 16px; border-radius: 50px;
+    font-family: 'Poppins', sans-serif; font-size: 13px; font-weight: 500; line-height: 1.3;
+    text-decoration: none; border: 2px solid #ffb727; color: #ffb727; background: transparent;
+    cursor: pointer; transition: 0.3s;
+}
+.btn:hover { background: #ffb727; color: #111; }
+.btn.primary { background: #ffb727; color: #111; }
+.btn.primary:hover { background: #e0a800; border-color: #e0a800; }
+.btn.ghost { border-color: #3a3a3a; color: #ccc; }
+.btn.ghost:hover { border-color: #ffb727; color: #ffb727; background: transparent; }
+.item-card a.btn { margin-top: 0; text-decoration: none; font-weight: 500; }
+.item-card a.btn.primary, .item-card a.btn.primary:hover { color: #111; }
+.item-card a.btn:hover { color: #111; }
+.item-card a.btn.ghost { color: #ccc; }
+.item-card a.btn.ghost:hover { color: #ffb727; }
+
+.doi-line { font-size: 12px; color: #888; margin-top: 12px; word-break: break-all; }
+.doi-line span { color: #bbb; }
+
+/* Achievements */
+.ach-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 20px; }
+.ach-grid .item-card { margin-bottom: 0; }
+.ach-icon {
+    width: 46px; height: 46px; border-radius: 10px; background: #1a1a1a; border: 1px solid #333;
+    display: flex; align-items: center; justify-content: center; color: #ffb727; font-size: 20px; margin-bottom: 14px;
+}
+
+/* Simple link-out buttons row */
+.profile-links { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 10px; }
+.profile-links .scholar-btn { margin-top: 10px; }
+
+/* ---------- Lightbox + PDF preview (created by script.js) ---------- */
+body.modal-open { overflow: hidden; }
+
+.lb-overlay, .pdf-overlay {
+    position: fixed; inset: 0; z-index: 1500; background: rgba(8,8,8,0.94);
+    display: flex; align-items: center; justify-content: center; flex-direction: column;
+    padding: 16px;
+}
+.lb-overlay[hidden], .pdf-overlay[hidden] { display: none; }
+.lb-figure { margin: 0; text-align: center; max-width: 100%; }
+.lb-figure img {
+    max-width: min(92vw, 1200px); max-height: 74vh; width: auto; height: auto;
+    border-radius: 8px; border: 1px solid #333; background: #1e1e1e;
+}
+.lb-figure figcaption { color: #ccc; font-size: 14px; margin-top: 12px; max-width: 760px; line-height: 1.6; }
+.lb-count { display: block; color: #888; font-size: 12px; margin-top: 4px; }
+.lb-btn {
+    position: absolute; background: #252525; color: #fff; border: 1px solid #3a3a3a;
+    width: 44px; height: 44px; border-radius: 50%; cursor: pointer; font-size: 17px;
+    display: flex; align-items: center; justify-content: center; transition: 0.3s;
+}
+.lb-btn:hover { background: #ffb727; color: #111; border-color: #ffb727; }
+.lb-close { top: 16px; right: 16px; }
+.lb-prev { left: 16px; top: 50%; transform: translateY(-50%); }
+.lb-next { right: 16px; top: 50%; transform: translateY(-50%); }
+
+.pdf-panel {
+    width: min(1000px, 100%); height: 100%; max-height: 92vh; background: #1e1e1e;
+    border: 1px solid #2a2a2a; border-radius: 12px; overflow: hidden; display: flex; flex-direction: column;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+.pdf-bar {
+    display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+    background: #252525; padding: 12px 16px; border-bottom: 1px solid #2a2a2a;
+}
+.pdf-bar h2 { color: #fff; font-size: 14px; font-weight: 600; flex: 1; min-width: 160px; }
+.pdf-bar .btn { padding: 6px 14px; font-size: 12px; }
+.pdf-frame { flex: 1; width: 100%; border: 0; background: #fff; }
+.pdf-hint { color: #888; font-size: 12px; padding: 8px 16px; background: #1e1e1e; border-top: 1px solid #2a2a2a; }
+
+/* ---------- Responsive additions ---------- */
+@media (max-width: 900px) {
+    .media-side { width: 150px; flex-basis: 150px; }
+}
+@media (max-width: 600px) {
+    body { padding: 20px 12px; }
+    .content-body { padding: 26px 18px; }
+    .top-nav { padding: 14px 16px; gap: 6px; }
+    .page-title { font-size: 26px; }
+    .media-card { flex-direction: column; }
+    .media-side { width: 100%; flex-basis: auto; }
+    .media-thumb.placeholder { aspect-ratio: 16 / 6; }
+    .gallery-strip a { width: calc(25% - 5px); }
+    .lb-prev { left: 8px; } .lb-next { right: 8px; }
+    .btn { padding: 8px 14px; }
+}
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    * { transition: none !important; }
+}
